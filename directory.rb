@@ -29,13 +29,12 @@ end
 def print(students)
     accumulator = 0
     while accumulator < students.length
-      puts "#{students[accumulator][:name]} (#{students[accumulator][:cohort]} cohort),
-      born on #{students[accumulator][:birthday]}, citizen of #{students[accumulator][:country]} "
+      puts "#{students[accumulator][:name]} (#{students[accumulator][:cohort]} cohort), born on #{students[accumulator][:birthday]}, citizen of #{students[accumulator][:country]}".center(60)
       accumulator += 1
     end
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(50)
 end
 
 students = input_students
