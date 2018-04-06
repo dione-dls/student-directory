@@ -22,7 +22,7 @@ def print_header
 end
 def print(students)
   students.each do |student, index|
-    if student[:name].start_with?("T")
+    if student[:name].delete(" ").length < 12
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
