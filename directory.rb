@@ -21,11 +21,11 @@ def print_header
   puts "-------------"
 end
 def print(students)
-  students.each do |student, index|
-    if student[:name].delete(" ").length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    accumulator = 0
+    while accumulator < students.length
+      puts "#{students[accumulator][:name]} (#{students[accumulator][:cohort]} cohort)"
+      accumulator += 1
     end
-  end
 end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
