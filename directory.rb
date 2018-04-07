@@ -20,6 +20,7 @@ def input_students
     puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Enter next student's details"
+    puts "Student Name: "
     name = gets.chomp
   end
   # return the array of students
@@ -30,11 +31,21 @@ def print_header
   puts "-------------".center(75)
 end
 def print(students)
-  students.each { |student, index|
-    puts "#{student[:name]} (#{student[:cohort]} cohort) " +
- "Date of Birth: #{student[:birthday]} ".center(35) +
- "Country of Citizenship: #{student[:country]}"
-  }
+  if !students.empty?
+    cohorts = []
+    students.each { |student|
+      cohorts.push(student[:cohort])
+    }
+  end
+  
+  cohorts.uniq.each { |cohort|
+    puts "Cohort: #{cohort}"
+  students.select { |student|
+    puts "#{student[:name]}" +
+    "Date of Birth: #{student[:birthday]} ".center(35) +
+    "Country of Citizenship: #{student[:country]}" if student[:cohort] == cohort
+    }
+  }    
 end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students".center(75)
