@@ -38,22 +38,24 @@ def print(students)
     }
   end
   
-  cohorts.uniq.each { |cohort|
-    puts "Cohort: #{cohort}"
-  students.select { |student|
-    puts "#{student[:name]}" +
-    "Date of Birth: #{student[:birthday]} ".center(35) +
-    "Country of Citizenship: #{student[:country]}" if student[:cohort] == cohort
+  if cohorts != nil
+    cohorts.uniq.each { |cohort|
+      puts "Cohort: #{cohort}"
+    students.select { |student|
+      puts "#{student[:name]}" +
+      "Date of Birth: #{student[:birthday]} ".center(35) +
+      "Country of Citizenship: #{student[:country]}" if student[:cohort] == cohort
+      }
     }
-  }    
+  end
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(75) if students.count != 1
+  puts "Overall, we have #{students.count} great students".center(75) if students.count > 1
   puts "Overall, we have #{students.count} great student".center(75) if students.count == 1
 end
 
 students = input_students
 # nothing happens here until we call the methods
-print_header
+print_header if students != []
 print(students)
 print_footer(students)
