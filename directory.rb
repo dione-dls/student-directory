@@ -5,7 +5,7 @@ def input_students
   students = []
   # get the first name
   puts "Student Name: "
-  name = gets.chomp
+  name = gets.tr("\n\r","")
   #while the name is not empty, repeat this code
   while !name.empty? do
      puts "Cohort: "
