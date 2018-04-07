@@ -48,7 +48,8 @@ def print(students)
   }    
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(75)
+  puts "Overall, we have #{students.count} great students".center(75) if students.count != 1
+  puts "Overall, we have #{students.count} great student".center(75) if students.count == 1
 end
 
 students = input_students
