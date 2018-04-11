@@ -1,4 +1,4 @@
-@students = [] # an empty array accessible to all methods
+@students = []
 
 def print_menu
   puts "1. Input the students"
@@ -26,7 +26,7 @@ def process(selection)
   when "4"
     load_students
   when "9"
-    exit # this will cause the program to terminate
+    exit
   else
     puts "I don't know what you meant, try again"
   end
@@ -39,10 +39,10 @@ end
 def input_students
   puts "Please enter the student's details"
   puts "To finish, just hit return twice"
-  # get the first name
+
   puts "Student Name: "
   name = STDIN.gets.chomp
-  #while the name is not empty, repeat this code
+
   while !name.empty? do
      puts "Cohort: "
      cohort = STDIN.gets.chomp
@@ -51,13 +51,20 @@ def input_students
      birthday = STDIN.gets.chomp
      puts "Citizenship: "
      country = STDIN.gets.chomp
-    # add the student hash to the array
+   
     add_students(name, cohort, birthday, country)
-    puts "Now we have #{@students.count} students"
-    # get another name from the user
+    print_summary
     puts "Enter next student's details"
     puts "Student Name: "
     name = STDIN.gets.chomp
+  end
+end
+
+def print_summary
+  if @students.count == 1
+    puts "Now we have #{@students.count} student"
+  else
+    puts "Now we have #{@students.count} students"
   end
 end
 
@@ -93,8 +100,11 @@ def print_student_list
 end
 
 def print_footer
-  puts "Overall, we have #{@students.count} great students".center(75) if @students.count > 1
-  puts "Overall, we have #{@students.count} great student".center(75) if @students.count == 1
+  if @students.count == 1
+    puts "Overall, we have #{@students.count} great student".center(75)
+  else
+    puts "Overall, we have #{@students.count} great students".center(75)
+  end
 end
 
 def save_students
