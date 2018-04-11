@@ -114,29 +114,29 @@ def print_footer
 end
 
 def get_filename
-  puts "Please enter a file name or hit return to use the default file"
+  puts "Please enter a file name or hit return to use the default file (students.csv)"
   file_name = STDIN.gets.chomp
   file_name == "" ? "students.csv" : file_name
 end
 
 def save_students(filename = "students.csv")
-  file = File.open(filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort], student[:birthday], student[:country]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  file = File.open(filename, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort], student[:birthday], student[:country]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
   puts "Student details sucessfully saved"
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-  name, cohort, birthday, country = line.chomp.split(',')
-    add_students(name, cohort.to_sym, birthday, country)
+  file = File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort, birthday, country = line.chomp.split(',')
+      add_students(name, cohort.to_sym, birthday, country)
+    end
   end
-  file.close
   puts "Student list successfully loaded"
 end
 
