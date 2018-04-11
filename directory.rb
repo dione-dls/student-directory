@@ -26,6 +26,7 @@ def process(selection)
   when "4"
     load_students
   when "9"
+    puts "Goodbye"
     exit
   else
     puts "I don't know what you meant, try again"
@@ -44,13 +45,13 @@ def input_students
   name = STDIN.gets.chomp
 
   while !name.empty? do
-     puts "Cohort: "
-     cohort = STDIN.gets.chomp
-     cohort = "unknown" if cohort == ""
-     puts "Date of Birth (e.g. 01 Jan 1985): "
-     birthday = STDIN.gets.chomp
-     puts "Citizenship: "
-     country = STDIN.gets.chomp
+    puts "Cohort: "
+    cohort = STDIN.gets.chomp
+    cohort = "unknown" if cohort == ""
+    puts "Date of Birth (e.g. 01 Jan 1985): "
+    birthday = STDIN.gets.chomp
+    puts "Citizenship: "
+    country = STDIN.gets.chomp
    
     add_students(name, cohort, birthday, country)
     print_summary
@@ -58,6 +59,7 @@ def input_students
     puts "Student Name: "
     name = STDIN.gets.chomp
   end
+  puts "Students sucessfully added"
 end
 
 def print_summary
@@ -75,8 +77,12 @@ def show_students
 end
 
 def print_header
-  puts "The students of Villains Academy".center(75)
-  puts "-------------".center(75)
+  if @students.count > 0
+    puts "The students of Villains Academy".center(75)
+    puts "-------------".center(75)
+  else
+    "Student list empty"
+  end
 end
 
 def print_student_list
@@ -115,6 +121,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Student details sucessfully saved"
 end
 
 def load_students(filename = "students.csv")
@@ -124,6 +131,7 @@ def load_students(filename = "students.csv")
     add_students(name, cohort.to_sym, birthday, country)
   end
   file.close
+  puts "Student list successfully loaded"
 end
 
 def try_load_students
